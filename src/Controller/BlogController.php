@@ -21,6 +21,19 @@ public function __construct(EntityManagerInterface $entityManager)
 {
     $this->em = $entityManager;
 }
+
+
+    /**
+     * @Route("/", name="home")
+     */
+    
+    public function home(){
+    
+            
+            return $this->render('blog/home.html.twig',[
+                'user' => "Boloss"]);
+        
+    }
     /**
      * @Route("/blog", name="app_blog")
      */
@@ -31,15 +44,6 @@ public function __construct(EntityManagerInterface $entityManager)
         return $this->render('blog/index.html.twig', [
             'controller_name' => 'BlogController',
             'articles' => $articles,
-        ]);
-    }
-    /**
-     * @Route("/", name="home")
-     */
-    public function home(){
-
-        return $this->render('blog/home.html.twig',[
-            'user' => 'Boloss'
         ]);
     }
     /**
@@ -86,7 +90,7 @@ public function __construct(EntityManagerInterface $entityManager)
         $article = $repo->find($id);
         if(! $article)
         {
-            return $this->render('blog/error404.html.twig');
+            throw $this->createNotFoundException('The product does not exist');
         }
         else{
         return $this->render('blog/show.html.twig',[
@@ -96,3 +100,5 @@ public function __construct(EntityManagerInterface $entityManager)
     }
     
 }
+    
+

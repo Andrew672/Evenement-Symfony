@@ -98,6 +98,23 @@ public function __construct(EntityManagerInterface $entityManager)
         ]);
     }
     }
+     /**
+     * @Route("/blog/{id}/delete", name="blog_delete")
+     */
+    public function delete(int $id): Response {
+        $article = $this->getDoctrine()
+          ->getRepository(Article::class)
+          ->find($id);
+     
+        $manager = $this->getDoctrine()->getManager();
+     
+        $manager->remove($article);
+        $manager->flush();
+     
+        $this->addFlash('success', "L'article $id a bien été supprimer");
+     
+        return $this->redirectToRoute('admin_evenements');
+      }
     
 }
     

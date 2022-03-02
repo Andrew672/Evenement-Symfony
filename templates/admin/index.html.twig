@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel évènements{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+<table class="table">
+    <thead>
+    <tr>
+    <th scope="col">#</th>
+    <th scope="col">Nom de l'évènement</th>
+    <th scope="col " class="text-center">Actions</th>
+    <th scope="col">Crée le</th>
+    </thead>
+    <tbody>
+{%for article in articles %}
+    <tr>
+        <th scope="row">{{ article.id }}</th>
+        <td>{{ article.title }}</td>
+        <td class="text-center"><a href="{{ path('blog_show', {'id': article.id })}}" class="btn btn-primary">Voir</a> <a href="{{ path('blog_edit', {'id': article.id })}}" class="btn btn-warning">Modifier</a> <a href="{{ path('blog_delete', {'id': article.id })}}" class="btn btn-danger">Supprimer</a></td>
+        <td>{{ article.createdAt | date('d-m-Y')}} à {{  article.createdAt | date('H:i') }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

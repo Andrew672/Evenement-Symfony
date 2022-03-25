@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class BlogController extends AbstractController
 {
@@ -37,10 +38,17 @@ public function __construct(EntityManagerInterface $entityManager)
     /**
      * @Route("/blog", name="app_blog")
      */
-    public function index(): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
         $repo = $this->getDoctrine()->getRepository(Article::class);
-        $articles = $repo->findAll();
+        $donnees = $repo->findAll();
+
+        $articles = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page',1),
+            4
+        );
+
         return $this->render('blog/index.html.twig', [
             'controller_name' => 'BlogController',
             'articles' => $articles,

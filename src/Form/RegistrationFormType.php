@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,13 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username')
+            ->add('nom')
+            ->add('prenom')
+            ->add('tel', NumberType::class)
+            ->add('formation_iut')
+            ->add('promotion')
+            ->add('formation_apres_iut')
+            ->add('profession')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

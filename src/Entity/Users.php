@@ -37,6 +37,41 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $tel;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $formation_iut;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $promotion;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $formation_apres_iut;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $profession;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,5 +154,89 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(string $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getFormationIut(): ?string
+    {
+        return $this->formation_iut;
+    }
+
+    public function setFormationIut(string $formation_iut): self
+    {
+        $this->formation_iut = $formation_iut;
+
+        return $this;
+    }
+
+    public function getPromotion(): ?string
+    {
+        return $this->promotion;
+    }
+
+    public function setPromotion(string $promotion): self
+    {
+        $this->promotion = $promotion;
+
+        return $this;
+    }
+
+    public function getFormationApresIut(): ?string
+    {
+        return $this->formation_apres_iut;
+    }
+
+    public function setFormationApresIut(?string $formation_apres_iut): self
+    {
+        $this->formation_apres_iut = $formation_apres_iut;
+
+        return $this;
+    }
+
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(string $profession): self
+    {
+        $this->profession = $profession;
+
+        return $this;
     }
 }

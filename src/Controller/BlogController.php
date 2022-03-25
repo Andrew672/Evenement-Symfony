@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Security\Core\User\User;
 
 class BlogController extends AbstractController
 {
@@ -31,8 +32,7 @@ public function __construct(EntityManagerInterface $entityManager)
     public function home(){
     
             
-            return $this->render('blog/home.html.twig',[
-                'user' => "Boloss"]);
+            return $this->render('blog/home.html.twig');
         
     }
     /**
